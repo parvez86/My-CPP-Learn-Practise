@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -94,8 +95,8 @@ private:
     void get_middle2(node* head){
         node* slow_ptr = head;
         node* fast_ptr = head;
-        if(!head){
-            while(fast_ptr != NULL && fast_ptr->next !=NULL){
+        if(head){
+            while(fast_ptr  && fast_ptr->next){
                 slow_ptr = slow_ptr->next;
                 fast_ptr = fast_ptr->next->next;
             }
@@ -171,6 +172,71 @@ private:
         return;
     }
 
+    bool has_loop(node* slow_pntr, node* fast_pntr){
+        if(!slow_pntr || !fast_pntr || !fast_pntr->next) return false;
+        if(slow_pntr == fast_pntr) return true;
+        return has_loop(slow_pntr->next, fast_pntr->next->next);
+    }
+
+    bool check_palindrome(node* head){
+        // stack<int> st;
+
+        node* pntr = head;
+        string str = "";
+        //
+        while(pntr){
+           // st.push(pntr->data);
+           str += (pntr->data+'0');
+            pntr = pntr->next;
+        }
+
+        /*
+        // reverse
+        pntr = head;
+        while(pntr){
+            if(st.empty() || st.top() != pntr->data) return false;
+            st.pop();
+            pntr = pntr->next;
+        }*/
+
+        int len = str.size()-1;
+        int mid = 0.5*(str.size()+1);
+        for(int i=0; i<=mid; i++){
+            if(str[i]!=str[len-i]) return false;
+        }
+        return true;
+    }
+
+    bool check_palindrome2(node* slow_pntr, node* fast_pntr, stack<int>& st){
+        // if list is empty return true
+        // else return false
+        if(!slow_pntr) return st.empty();
+
+        // if slow pointer points second half nodes
+        if(!fast_pntr){
+            // if list is not empty & list is not palindrome
+            // return false
+            // else pop a node from stack
+            if(!st.empty() && slow_pntr->data != st.top()) return false;
+            st.pop();
+            return check_palindrome2(slow_pntr->next, fast_pntr, st);
+        }else if(!fast_pntr->next) return check_palindrome2(slow_pntr->next, fast_pntr->next, st);   // for odd length. skip the middle node
+        else{   //if slow pointer points first half nodes
+            st.push(slow_pntr->data);
+            return check_palindrome2(slow_pntr->next, fast_pntr->next->next, st);
+        }
+    }
+
+    void create_loop(node* head, node* curr, bool flag){
+        if(curr->next==NULL || curr->next==head){
+            (flag)? curr->next = head:curr->next = NULL;
+            return;
+
+        }
+        create_loop(head, curr->next, flag);
+    }
+
+
 public:
     LinkedList(){
         head = NULL;
@@ -202,17 +268,54 @@ public:
         cout<< "Middle node: ";
         if(head==NULL) {cout<< " "<<endl;return;}
         if(head->next == NULL){cout<< head->data<< endl; return;}
-        node* mid_node = get_middle(head->next, head->next->next);
+        node* mid_node = get_middle(head, head);
         (mid_node->data)?cout<< mid_node->data<< endl:cout<< " "<< endl;
     }
+
     void printList(){
         display_linked_list(head);
     }
+
     void reverseList(){
         head = reverse_list2(head);
     }
+
     void swap_node(int x, int y){
         swap_2_nodes(head, x, y);
+    }
+
+    void hasLoop(){
+        cout<< "Has loop: ";
+        if(!head) cout<< "False"<< endl;
+        else if(head && head->next)(has_loop(head->next, head->next->next))? cout<< "True"<< endl:
+            cout<< "False"<< endl;
+        else cout<< "False"<< endl;
+        return;
+    }
+
+    void createLoop(bool flag){
+        if(head){
+            create_loop(head, head, flag);
+        }
+        return;
+    }
+
+    void hasPalindrome(){
+        stack<int> st;
+        cout<< "Has palindrome: ";
+        if(!head) cout<< "False"<< endl;
+       // else if(head && !head->next) cout<< "True"<< endl;
+        else {
+                // 1st method: iterative
+                (check_palindrome(head))?cout<< "True"<<endl:cout<< "False"<< endl;
+
+                // while(!st.empty()) st.pop();
+                // 2nd method: recursive
+                (check_palindrome2(head, head, st))?cout<< "Has Palindrome2: True"<< endl:   // for even length list
+                    (check_palindrome2(head, head->next, st))?cout<< "Has Palindrome2: True"<< endl:cout<< "Has Palindrome2: False"<<endl;  // for odd length list
+
+        }
+        return;
     }
 };
 
@@ -220,15 +323,32 @@ public:
 int main()
 {
     LinkedList l_list;
+    l_list.hasLoop();
     // add node
     l_list.append(25);
+    // l_list.hasLoop();
+
     l_list.append(35);
+   // l_list.hasLoop();
+
     l_list.append(45);
     l_list.push(15);
-    l_list.push(5);
 
+    l_list.push(5);
     // display list
     l_list.printList();
+
+    l_list.hasLoop();
+    cout<< "After creating loop: "<< endl;
+    l_list.createLoop(true);
+    l_list.hasLoop();
+
+    cout<< "After removing loop: "<< endl;
+    l_list.createLoop(false);
+    l_list.hasLoop();
+    l_list.printList();
+
+    l_list.hasPalindrome();
 
     // get middle of the list
     cout<< endl<< "Middle node of the list "<< endl;
@@ -236,7 +356,7 @@ int main()
 
     // swap 2 nodes
     cout<< endl<< "After swaping node 25 & node 45 "<< endl;
-    l_list.swap_node(25, 45);
+   // l_list.swap_node(25, 45);
     l_list.printList();
 
     cout<< endl<< "After deleting node 25 "<< endl;
