@@ -81,7 +81,7 @@ int main()
     sort(v.begin(), v.end(), greater<int>());
     for(const auto &p:v) cout<< p<< " ";
     cout<< endl;
-    // fucking blind unique detection.
+    // blind unique detection.
     // array must be sorted.
     auto uni = unique(v.begin(), v.end());
     v.erase(uni, v.end());
