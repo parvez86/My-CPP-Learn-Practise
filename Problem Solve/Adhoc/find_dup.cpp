@@ -82,6 +82,7 @@ void find_duplicate3(vector<int> vec)
     mp.clear();
 }
 
+
 int main()
 {
     int arr[] = {2, 3, 5, 1, 5, 6, 7, 2, 6, 8};

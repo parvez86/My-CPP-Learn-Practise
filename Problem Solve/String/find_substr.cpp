@@ -24,6 +24,7 @@ int FindSubStr(string text, string subtext)
 int FindSubStr2(string text, string subtext)
 {
     int indx = text.find(subtext);
+    cout<< *find(text.begin(), text.end(), subtext)<< endl;
     return (indx==text.size())?-1:indx;
 }
 
@@ -39,6 +40,7 @@ int main()
     (indx != -1)? cout<< "Substring is found at index "<< indx<< endl:
         cout<< "Substring is not found"<< endl;
     if(indx != -1) cout<< "The substring is: "<< text.substr(indx, text1.size())<< endl;
+
     indx = FindSubStr2(text, text1);
     (indx != string::npos)? cout<< "Substring is found at index "<< indx<< endl:
         cout<< "Substring is not found"<< endl;

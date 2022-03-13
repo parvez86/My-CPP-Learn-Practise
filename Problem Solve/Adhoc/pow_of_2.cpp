@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -30,15 +31,23 @@ int check_pow_of_2_bitwise(int n)
     return (n!=0) && (!(n&(n-1)));
 }
 
+
+int check_pow_of_2_log(int n)
+{
+    float val = log2(n);
+    return ((int)(val*10)%10 == 0)? 1:0;
+}
+
 int main()
 {
     // Check if the number is power of 2
-    int n;
-    cout<< "Enter the number: ";
-    cin>> n;
+    int n=128;
+    // cout<< "Enter the number: ";
+    // cin>> n;
 
     (check_pow_of_2(n))? cout<< "The number is power of 2"<<endl:cout<<"The number is not power of 2"<< endl;
     (check_pow_of_2_rec(n))? cout<< "The number is power of 2"<<endl:cout<<"The number is not power of 2"<< endl;
     (check_pow_of_2_bitwise(n))? cout<< "The number is power of 2"<<endl:cout<<"The number is not power of 2"<< endl;
+    (check_pow_of_2_log(n))? cout<< "The number is power of 2"<<endl:cout<<"The number is not power of 2"<< endl;
     return 0;
 }

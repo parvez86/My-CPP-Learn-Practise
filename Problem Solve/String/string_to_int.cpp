@@ -9,7 +9,7 @@ using namespace std;
 ll int str_to_int(string number)
 {
     ll result = 0;
-    int indx=-1;
+    int indx =-1;
     while(number[++indx] != '\0'){
         result*=10;
         result+=(number[indx]-'0');
@@ -19,16 +19,17 @@ ll int str_to_int(string number)
 
 // using recursion
 void str_to_int2(string number, int indx, int len){
-    if(indx==len) return;
-    result*=10;
-    result+=(number[indx]-'0');
+    if (indx==len) return;
+    result *= 10;
+    result += (number[indx]-'0');
     str_to_int2(number, indx+1, len);
 }
 
 ll str_to_int3(string number, int len){
     if(len== 0) return number[0]-'0';
-    result = str_to_int3(number, len-1);
-    return result*10 + (number[len]-'0');
+    int result = str_to_int3(number, len-1)*10 + (number[len]-'0');
+    // return result*10 + (number[len]-'0');
+    return result;
 }
 
 // using string function
@@ -37,6 +38,7 @@ ll str_to_int4(string number)
 {
     return stoi(number);
 }
+
 int main()
 {
     // string number = "18929182191";

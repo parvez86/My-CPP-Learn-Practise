@@ -26,7 +26,7 @@ void binTodec(string num)
     cout<< "Binary number: "<< num<< endl;
     // int int_num = to_dec(num);
     int int_num = to_dec2(num, num.size()-1, 1, 0);
-    cout<< "Equivalen decimal number: "<< int_num<< endl;
+    cout<< "Equivalent decimal number: "<< int_num<< endl;
 }
 
 int main()

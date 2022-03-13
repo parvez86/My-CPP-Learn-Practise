@@ -19,6 +19,20 @@ string int_to_str(long int n)
     return str;
 }
 
+string int_to_str2(long int n)
+{
+    if(n<0) return "";
+    string str = int_to_str2(n/10);
+    int rem = n%10;
+    str.push_back((rem+'0'));
+    return str;
+}
+
+string int_to_str3(long int n)
+{
+    return to_string(n);
+}
+
 int main()
 {
     long int number;
@@ -31,6 +45,8 @@ int main()
     ss << number;
     cout<< "Equivalent string number (sstream): "<< ss.str()<< endl;
     cout<< "Equivalent string number: "<< int_to_str(number)<< endl;
+   // string res = int_to_str2(number);
+    // cout<< "Equivalent string number: "<< res<< endl;
     return 0;
 }
 

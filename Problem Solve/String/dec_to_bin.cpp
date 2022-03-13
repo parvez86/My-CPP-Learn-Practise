@@ -12,8 +12,8 @@ void decToBin(int num)
     cout<< "The original number is: "<< num<< endl;
     while(num>0){
         int rem = num % 2;
-        res+= (rem+'0');
-        num/=2;
+        res += (rem+'0');
+        num /= 2;
     }
     reverse(res.begin(), res.end());
     cout<< "The binary form of the number: "<< res<< endl;

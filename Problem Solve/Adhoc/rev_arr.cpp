@@ -18,6 +18,7 @@ void rev_array(int arr[], int len)
     }
     cout<< endl;
 }
+
 // naive with vector
 void rev_array2(vector<int> vec)
 {
