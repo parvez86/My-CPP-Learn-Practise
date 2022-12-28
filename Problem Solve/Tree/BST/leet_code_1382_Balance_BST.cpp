@@ -63,11 +63,11 @@ class Solution {
         return root;
     }
 
-    void inOrder(TreeNode* curr){
+    void inOrderAdd(TreeNode* curr){
         if(!curr) return;
-        inOrder(curr->left);
+        inOrderAdd(curr->left);
         b_root = addItem(b_root, curr->val);
-        inOrder(curr->right);
+        inOrderAdd(curr->right);
     }
 
 
@@ -77,16 +77,16 @@ class Solution {
         preOrder(root->left);
         preOrder(root->right);
     }
-    void in_order(TreeNode* root){
+    void inOrder(TreeNode* root){
         if(!root) return;
-        in_order(root->left);
+        inOrder(root->left);
         cout<< root->val<< " ";
-        in_order(root->right);
+        inOrder(root->right);
     }
 
 public:
     TreeNode* balanceBST(TreeNode* root) {
-        inOrder(root);
+        inOrderAdd(root);
         return b_root;
     }
     TreeNode* balanceBST2(vector<int> vec) {
@@ -105,7 +105,7 @@ public:
     }
     void displayIn(TreeNode* root){
         cout<< "The nodes are: ";
-        in_order(root);
+        inOrder(root);
         cout<< endl;
     }
 };

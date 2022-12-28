@@ -73,14 +73,14 @@ TreeNode* addItem(TreeNode* root, int val){
 
     int balance = l_height-r_height;
 
-    // rr-rl rotation
+    // rl rotation
     if (balance < -1){
-        if(val < root->right->val) root->right = leftToRightRotate(root->right); // for rl rotation
+        if(val < root->right->val) root->right = leftToRightRotate(root->right); // ll rotation
         return rightToLeftRotate(root); // rr rotation
     }
-    //  ll-lr rotation
+    //  lr rotation
     else if(balance > 1) {
-        if(val > root->left->val) root->left = rightToLeftRotate(root->left); // for lr rotation
+        if(val > root->left->val) root->left = rightToLeftRotate(root->left); // rr rotation
         return leftToRightRotate(root); // ll rotation
     }
     return root;

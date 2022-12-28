@@ -21,12 +21,11 @@ class Solution {
         return root;
     }
 
-    void get_kth(TreeNode* root, int& k){
+    void get_kth(TreeNode* root, vector<int>& vec){
         if(!root) return ;
-        get_kth(root->left, k);
-        if(k==1) {k==root->val;return;}
-        k-=1;
-        get_kth(root->right, k);
+        get_kth(root->left, vec);
+        vec.push_back(root->val);
+        get_kth(root->right, vec);
     }
 
     void display(TreeNode* root){
@@ -38,7 +37,7 @@ class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
         vector<int> vec;
-        get_kth(root, k);
+        get_kth(root, vec);
         return vec[k-1];
     }
 
@@ -55,14 +54,14 @@ public:
 int main()
 {
     Solution obj;
-    int arr[] = {3,1,4,NULL,2};
+    int arr[] = {3,1,4,NULL,2, 5, 2};
     int len = sizeof(arr)/sizeof(arr[0]);
 
     TreeNode* root=NULL;
     for(int i=0; i<len; i++){
         if(arr[i]) root = obj.add(root, arr[i]);
     }
-    int k=1;
+    int k=6;
     obj.printTree(root);
     int val= obj.kthSmallest(root, k);
     cout<< val<< endl;;
