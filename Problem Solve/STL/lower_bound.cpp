@@ -13,8 +13,8 @@ int isLowerBound(vector<int> vec, int val)
         if(vec[mid]<val) low=mid+1;
         else hi=mid;
     }
-    if(vec[low]>=mid) return low;
-    if(vec[hi]>=mid) return hi;
+    if(vec[low]>=mid) return low;   // for upper bound no equal
+    if(vec[hi]>=mid) return hi;     // for upper bound no equal
     return len-1;
 }
 
