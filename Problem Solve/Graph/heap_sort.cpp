@@ -100,6 +100,7 @@ void print_vec(vector<int> vec)
     cout<< endl;
 }
 
+// time complexity=O(nlogn) (all cases), space complexity= O(1)
 int main()
 {
     vector<int> vec {12, 11, 13, 5, 6, 7};
