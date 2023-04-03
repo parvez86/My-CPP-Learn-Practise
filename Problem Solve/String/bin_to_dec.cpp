@@ -21,6 +21,12 @@ int to_dec2(string num, int indx, int pow, int res)
     return to_dec2(num, indx-1, pow*2, res+(pow*(num[indx]-'0')));
 }
 
+int to_dec3(int num, int res, int pow){
+    if(num==0) return res;
+    if(num%2) res+=pow;
+    return bin_to_dec(num/10, res, pow+pow);
+}
+
 void binTodec(string num)
 {
     cout<< "Binary number: "<< num<< endl;
