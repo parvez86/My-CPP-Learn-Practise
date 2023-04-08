@@ -20,7 +20,7 @@ int check_pow_of_2_rec(int n)
     //cout<< n<< endl;
     if(n==1) return 1;
     if(n%2==1 || n==0) return 0;
-    check_pow_of_2_rec(n/2);
+    return check_pow_of_2_rec(n/2);
 }
 
 
