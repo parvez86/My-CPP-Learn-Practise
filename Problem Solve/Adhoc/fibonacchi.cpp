@@ -51,10 +51,15 @@ void get_fibo_seq3(int n)
     }
 }
 
-
 int get_fibo(int n, int m, int p){
     if(p == 0) return n;
     return get_fibo(n+m, n, p-1);
+}
+
+int get_fibo_seq5(int n, vector<int> arr){
+    if(n <=1 ) return n;
+    if(arr[n-1]) return arr[n-1];
+    return arr[n] = get_fibo_seq5(n-1, arr)+get_fibo_seq5(n-2, arr);
 }
 
 
