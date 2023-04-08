@@ -38,7 +38,7 @@ class Solution {
     bool checkSymmetricPrNotRecursive2(TreeNode* left, TreeNode* right){
         if(!left && !right) return true;
         if(!left || !right || left->val != right->val){
-            return false;s
+            return false;
         }
         return checkSymmetricPrNotRecursive2(left->left, right->right) &&
         checkSymmetricPrNotRecursive2(left->right, right->left);
