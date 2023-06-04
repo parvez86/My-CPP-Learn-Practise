@@ -33,26 +33,26 @@ class Solution {
         inorder(curr->right);
     }
 
-    void getPreOrder(TreeNode* root, TreeNode*& root1){
+    void getInOrder(TreeNode* root, TreeNode*& root1){
 
         if(!root) return;
-        getPreOrder(root->left, root1);
+        getInOrder(root->left, root1);
         root1 = addNode(root1, root->val);
-        getPreOrder(root->right, root1);
+        getInOrder(root->right, root1);
     }
 
-    void display_in_pre_order(TreeNode* root){
+    void displayInOrder(TreeNode* root){
         if(!root) {cout<< endl; return;}
-        display_in_pre_order(root->left);
+        displayInOrder(root->left);
         cout<< root->val<< " ";
-        display_in_pre_order(root->right);
+        displayInOrder(root->right);
     }
 
 public:
     TreeNode* increasingBST(TreeNode* root) {
         TreeNode* new_root = NULL;
         TreeNode* curr = root;
-        getPreOrder(root, new_root);
+        getInOrder(root, new_root);
 
         return new_root;
     }
@@ -61,7 +61,7 @@ public:
     }
     void displayTree(TreeNode* head){
         cout<< "The elements of tree: ";
-        display_in_pre_order(head);
+        displayInOrder(head);
     }
 };
 
@@ -95,5 +95,3 @@ Output: [1,null,5,null,7]
 Input: root = [5,3,6,2,4,null,8,1,null,null,null,7,9]
 Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
 */
-
-
