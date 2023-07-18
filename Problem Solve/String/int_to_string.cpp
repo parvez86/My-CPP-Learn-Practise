@@ -21,10 +21,10 @@ string int_to_str(long int n)
 
 string int_to_str2(long int n)
 {
-    if(n<0) return "";
+    if(n==0) return "";
     string str = int_to_str2(n/10);
-    int rem = n%10;
-    str.push_back((rem+'0'));
+    int rem = (n%10);
+    str+=(rem+'0');
     return str;
 }
 
