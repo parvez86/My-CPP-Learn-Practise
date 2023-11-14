@@ -47,7 +47,7 @@ int main()
     cout<< val<< endl;
     cout<< ob.reverse(val)<< endl;
     if(val<0) is_neg = true;
-    cout<< ((is_neg)?ob.reverse2(0-val):ob.reverse2(val))<< endl;
+    cout<< ob.reverse2(val)<< endl;
     return 0;
 }
 
