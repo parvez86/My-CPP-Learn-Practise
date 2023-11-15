@@ -24,7 +24,7 @@ class BrowserHistory {
 
     page* get_next_node(page* curr, int steps){
         if(!curr || !curr->next || steps==0) return curr;
-        return get_prev_node(curr->next, steps-1);
+        return get_next_node(curr->next, steps-1);
     }
 
     void make_empty(page*& head){
