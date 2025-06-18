@@ -24,6 +24,25 @@ class Node {
         return NULL;
     }
 
+   Node* lca2(Node *root, int v1, int v2) {
+        // Ensure both nodes exist
+        if (!findNode(root, v1) || !findNode(root, v2))
+            return NULL;  // One of the nodes doesn't exist
+    
+        Node* current = root;
+        while (current != NULL) {
+	    if (v1 < current->data && v2 < current->data) {
+                current = current->left;
+            } else if (v1 > current->data && v2 > current->data) {
+                current = current->right;
+            } else {
+                // Current node is the lowest common ancestor
+                return current;
+            }
+        }
+        return NULL;
+    }
+
     Node *lca(Node *root, int v1,int v2) {
 		// Write your code here.
         if(!root) return NULL;
