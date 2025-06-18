@@ -16,8 +16,8 @@ public:
     string longestNiceSubstring(string s) {
         string niceStr="";
         for(int i=0; i<s.size(); i++){
-            for(int j=2; j<=s.size(); j++){
-                string sub = s.substr(i, j);
+            for(int j=i+1; j<=s.size(); j++){
+                string sub = s.substr(i, j-i);
                 if(isValid(sub)){
                     if(niceStr.size()<sub.size()) niceStr = sub;
                 }
