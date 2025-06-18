@@ -20,7 +20,6 @@ int b_search(vector<int> vec, int low, int high, int data, int len)
     if(mid>=0 && mid<len && vec[mid]==data) return mid;
     if(vec[mid]>data) return b_search(vec, low, mid-1, data, len);
     else return b_search(vec, mid+1, high, data, len);
-
 }
 
 int b_search2(vector<int> vec, int p)
@@ -33,7 +32,31 @@ int b_search2(vector<int> vec, int p)
         else if(vec[mid]>p) high = mid-1;
         else low=mid+1;
     }
-    return vec.size();
+    return -1;
+}
+
+int lower_bound(vector<int> vec, int p)
+{
+    int low=0, high = vec.size();
+    while(low<high){
+        int mid = low+(high-low)/2;
+
+        if(vec[mid]<p) low = mid+1;
+        else high = mid;
+    }
+    return left;
+}
+
+int upper_bound(vector<int> vec, int p)
+{
+    int low=0, high = vec.size();
+    while(low<high){
+        int mid = low+(high-low)/2;
+
+        if(vec[mid]<=p) low = mid+1;
+        else high = mid;
+    }
+    return left;
 }
 
 void addItem(vector<int>& vec, int p)
