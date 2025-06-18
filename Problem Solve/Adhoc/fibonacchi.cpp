@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+unordered_map<int, long long> memo;
+
 //long int sum;
 
 // using recursion
@@ -69,6 +71,19 @@ int get_fibo_seq4(int n)
     return get_fibo_seq4(n-1) + get_fibo_seq4(n-2);
 }
 
+long long fibo5(int n) {
+    if (memo.find(n) != memo.end()) {
+        return memo[n];
+    }
+
+    if (n <= 1) {
+        return n;
+    }
+
+    memo[n] = fibo5(n - 1) + fibo5(n - 2);
+    return memo[n];
+}
+
 int main()
 {
     int n;
@@ -99,5 +114,6 @@ int main()
     printf("\n");
 
     printf("nth(%d) fibo: %d\n", n, get_fibo_seq4(n));
+    cout<< fibo5(8)<< endl;
     return 0;
 }
